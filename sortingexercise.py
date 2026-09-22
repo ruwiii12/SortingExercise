@@ -48,7 +48,13 @@ def BubbleSortOptimizedAsc(l: list) -> list:
 # - Implement 2 versions of the algorithm: one that sorts in ascending order and another in descending order
 
 def InsertionSortDesc(l: list) -> list:
-    pass # Your code here
+    for i in range(1, len(l)):
+        key, j = l[i], i - 1
+        while j >= 0 and l[j] < key:
+            l[j + 1] = l[j]
+            j -= 1
+        l[j + 1] = key
+    return l
 
 
 def InsertionSortAsc(l: list) -> list:
