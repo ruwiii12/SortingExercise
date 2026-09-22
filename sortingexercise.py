@@ -22,6 +22,8 @@ def BubbleSortOptimizedDesc(l: list) -> list:
         if not swapped:
             break
 
+    return l
+
 
 def BubbleSortOptimizedAsc(l: list) -> list:
     n = len(l)
@@ -36,6 +38,8 @@ def BubbleSortOptimizedAsc(l: list) -> list:
 
         if not swapped:
             break
+
+    return l
 
 
 # Problem 2b
@@ -93,15 +97,13 @@ def SelectionSortAsc(l: list) -> list:
     n = len(l)
 
     for i in range(n):
-        # Assume the current position holds the smallest remaining value
         min_idx = i
 
-        # Scan the unsorted remainder for something smaller
+        # Check the unsorted for a smaller value
         for j in range(i + 1, n):
             if l[j] < l[min_idx]:
                 min_idx = j
 
-        # Place the smallest found into position i
         l[i], l[min_idx] = l[min_idx], l[i]
 
     return l
@@ -119,9 +121,45 @@ def SelectionSortAsc(l: list) -> list:
 # - Handle invalid inputs
 
 def Sorter():
-    pass # Your code here
+    algorithms = {
+        "bubble": (BubbleSortOptimizedAsc, BubbleSortOptimizedDesc),
+        "insertion": (InsertionSortAsc, InsertionSortDesc),
+        "selection": (SelectionSortAsc, SelectionSortDesc),
+    }
 
+    while True:
+        raw_list = input("Enter integers (ex: 1, 2, 3): ").strip()
 
-'''
-use try and except in def Sorter()
-'''
+        if raw_list == "":
+            print("Invalid. Please try again.")
+            continue
+
+        try:
+            numbers = [int(token.strip()) for token in raw_list.split(",")]
+        except ValueError:
+            print("Invalid. Please try again.")
+            continue
+
+        break
+
+    while True:
+        sort_choice = input('Enter the sort to use ("bubble", "insertion", or "selection"): ').strip().lower()
+
+        if sort_choice in algorithms:
+            break
+
+        print("Invalid. Please try again.")
+
+    while True:
+        direction = input('Enter the direction ("asc" or "desc"): ').strip().lower()
+
+        if direction in ("asc", "desc"):
+            break
+
+        print("Invalid. Please try again.")
+
+    ascending, descending = algorithms[sort_choice]
+    sorted_list = ascending(numbers) if direction == "asc" else descending(numbers)
+
+    print(f"Sorted list ({direction}): {sorted_list}")
+    return sorted_list
