@@ -9,7 +9,18 @@
 # - Implement 2 versions of the algorithm: one that sorts in ascending order and another in descending order
 
 def BubbleSortOptimizedDesc(l: list) -> list:
-    pass # Your code here
+    n = len(l)
+
+    for i in range(n):
+        swapped = False
+
+        for j in range(0, n - i - 1):
+            if l[j] < l[j + 1]:
+                l[j], l[j + 1] = l[j + 1], l[j]
+                swapped = True
+
+        if not swapped:
+            break
 
 
 def BubbleSortOptimizedAsc(l: list) -> list:
@@ -73,3 +84,8 @@ def SelectionSortAsc(l: list) -> list:
 
 def Sorter():
     pass # Your code here
+
+
+'''
+use try and except in def Sorter()
+'''
