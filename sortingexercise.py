@@ -56,9 +56,14 @@ def InsertionSortDesc(l: list) -> list:
         l[j + 1] = key
     return l
 
-
 def InsertionSortAsc(l: list) -> list:
-    pass # Your code here
+    for i in range(1, len(l)):
+        key, j = l[i], i - 1
+        while j >= 0 and l[j] > key:  # flipped compared to above 
+            l[j + 1] = l[j]
+            j -= 1
+        l[j + 1] = key
+    return l
 
 # Problem 2c
 # 
@@ -70,8 +75,21 @@ def InsertionSortAsc(l: list) -> list:
 # - Implement 2 versions of the algorithm: one that sorts in ascending order and another in descending order
 
 def SelectionSortDesc(l: list) -> list:
-    pass # Your code here
+    n = len(l)
 
+    for i in range(n):
+        # Assume the current position holds the largest remaining value
+        max_idx = i
+
+        # Scan the unsorted remainder for something bigger
+        for j in range(i + 1, n):
+            if l[j] > l[max_idx]:
+                max_idx = j
+
+        # Place the largest found into position i
+        l[i], l[max_idx] = l[max_idx], l[i]
+
+    return l
 
 def SelectionSortAsc(l: list) -> list:
     pass # Your code here
