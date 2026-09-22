@@ -13,14 +13,14 @@ def BubbleSortOptimizedDesc(l: list) -> list:
 
 
 def BubbleSortOptimizedAsc(l: list) -> list:
-    n = len(arr)
+    n = len(l)
 
     for i in range(n):
         swapped = False
 
         for j in range(0, n - i - 1):
-            if arr[j] > arr[j + 1]:
-                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+            if l[j] > l[j + 1]:
+                l[j], l[j + 1] = l[j + 1], l[j]
                 swapped = True
 
         if not swapped:
